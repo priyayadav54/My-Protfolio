@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya Yadav - Portfolio</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IM Fell DW Pica', serif;
+            background-color: #FDF6E3; /* Papyrus/Light Sand */
+            color: #3C3636; /* Dark Brown */
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Cinzel Decorative', cursive;
+        }
+        .bg-papyrus { background-color: #FDF6E3; }
+        .bg-dark-sand { background-color: #EAE0C8; }
+        .text-pharaoh-gold { color: #DAA520; }
+        .border-pharaoh-gold { border-color: #DAA520; }
+        .bg-lapis-blue { background-color: #00447C; }
+        .text-lapis-blue { color: #00447C; }
+
+        .section-card {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border: 2px solid #D4AF37; /* Gold border */
+        }
+
+        .decorative-border-bottom {
+            position: relative;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .decorative-border-bottom::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #B8860B, #DAA520, #B8860B);
+        }
+
+        /* Timeline Styles */
+        .timeline { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #DAA520;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        .timeline-container { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -14px;
+            background-color: #FDF6E3;
+            border: 4px solid #B8860B;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-container.right::after { left: -11px; }
+        .timeline-content { padding: 20px 30px; background-color: #EAE0C8; position: relative; border-radius: 6px; border: 1px solid #DAA520; }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container.right { left: 0%; }
+            .timeline-container.left::after, .timeline-container.right::after { left: 18px; }
+        }
+
+        /* Tabs Styles */
+        .tab-button.active {
+            border-color: #DAA520;
+            background-color: #DAA520;
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Project Card Image Overlay */
+        .project-card-image {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-papyrus">
+
+    <!-- Header -->
+    <header class="bg-dark-sand/80 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto flex justify-between items-center p-4">
+            <div class="font-display text-2xl font-bold text-lapis-blue">Priya Yadav</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:text-pharaoh-gold transition-colors duration-300">About</a>
+                <a href="#experience" class="hover:text-pharaoh-gold transition-colors duration-300">Experience</a>
+                <a href="#education" class="hover:text-pharaoh-gold transition-colors duration-300">Education</a>
+                <a href="#internships" class="hover:text-pharaoh-gold transition-colors duration-300">Internships</a>
+                <a href="#skills" class="hover:text-pharaoh-gold transition-colors duration-300">Skills</a>
+                <a href="#projects" class="hover:text-pharaoh-gold transition-colors duration-300">Projects</a>
+                <a href="#certifications" class="hover:text-pharaoh-gold transition-colors duration-300">Certifications</a>
+                <a href="#contact" class="hover:text-pharaoh-gold transition-colors duration-300">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-lapis-blue">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-sand">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-papyrus">About</a>
+            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-papyrus">Experience</a>
+            <a href="#education" class="block py-2 px-4 text-sm hover:bg-papyrus">Education</a>
+            <a href="#internships" class="block py-2 px-4 text-sm hover:bg-papyrus">Internships</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-papyrus">Skills</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-papyrus">Projects</a>
+            <a href="#certifications" class="block py-2 px-4 text-sm hover:bg-papyrus">Certifications</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-papyrus">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center py-20">
+            <h1 class="text-4xl md:text-6xl font-bold text-lapis-blue drop-shadow-sm">Master Builder of Digital Pyramids</h1>
+            <p class="text-xl md:text-2xl mt-4 text-gray-700">Seeking a challenging station within the digital realm where I can harness my technical prowess and ancient knowledge to contribute to the growth of the organization, while continuously refining my own skills and wisdom.</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">The Scribe's Tale</h2>
+            <div class="section-card p-8 rounded-lg">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-pharaoh-gold shadow-lg flex-shrink-0">
+                        <img src="https://placehold.co/300x300/F8F4E3/3C3636?text=Priya+Yadav" alt="Priya Yadav" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-lg text-center md:text-left">
+                        <p class="mb-2">Greetings, traveler! I am Priya Yadav, born under the sign of the Nile on July 5, 2002. Currently residing in the vibrant city of Indore, I am a dedicated artisan in the digital realm.</p>
+                        <p class="mb-4">Like the ancient scribes who chronicled histories and built enduring legacies, I translate modern challenges into elegant, efficient digital solutions. My journey has taken me from academic foundations to practical applications, leading teams and communicating across vast distances, always with a goal of creating structures that are both functional and enduring.</p>
+                        <p>With a passion for problem-solving and a keen eye for detail, I am ready to contribute my expertise to new and impactful endeavors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Chronicles of Work</h2>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-lapis-blue">Consultant</h3>
+                        <p class="text-sm text-gray-600">Albireo Tech Systems | December 2021 - September 2023</p>
+                        <ul class="list-disc list-inside mt-2 text-gray-700">
+                            <li>Cultivated strong Client Relationships, ensuring harmonious collaborations.</li>
+                            <li>Spearheaded Talent Acquisition, identifying and bringing forth skilled artisans.</li>
+                            <li>Guided and managed teams, fostering a productive and cohesive environment.</li>
+                            <li>Provided essential Hiring Support, aiding in the selection of promising new talents.</li>
+                            <li>Facilitated seamless Communication channels, bridging distant lands.</li>
+                            <li>Offered comprehensive Support Management, ensuring all operations flowed smoothly.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Tablets of Enlightenment</h2>
+            <div class="timeline">
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-lapis-blue">B.Tech/B.E. (Computers)</h3>
+                        <p class="text-sm text-gray-600">Mahakal Institute of Management, Ujjain | Year of Passing: 2024</p>
+                        <p class="mt-2">Score: 7.99 CGPA | Medium: English</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-lapis-blue">Class XII</h3>
+                        <p class="text-sm text-gray-600">Govt. Model Higher Secondary School, Ujjain | Year of Passing: 2020</p>
+                        <p class="mt-2">Board: Madhya Pradesh | Percentage: 82% | Medium: English</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-lapis-blue">Class X</h3>
+                        <p class="text-sm text-gray-600">Govt. Model Higher Secondary School, Ujjain | Year of Passing: 2018</p>
+                        <p class="mt-2">Board: Madhya Pradesh | Percentage: 84% | Medium: English</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internships Section -->
+        <section id="internships" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Apprenticeships in the Guilds</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="section-card p-6 rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <h3 class="font-bold text-xl mb-2 text-lapis-blue">Data Science and Machine Learning Training</h3>
+                    <p class="text-sm text-gray-600">infotact solution | May 2025 - June 2025</p>
+                    <p class="mt-2 text-gray-700">Intensive training focused on the principles and applications of Data Science and Machine Learning.</p>
+                </div>
+                <div class="section-card p-6 rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <h3 class="font-bold text-xl mb-2 text-lapis-blue">Advance Java Hibernate</h3>
+                    <p class="text-sm text-gray-600">jobsense institute | May 2023 - December 2023</p>
+                    <p class="mt-2 text-gray-700">Comprehensive training in Advance Java and Hibernate for robust application development.</p>
+                </div>
+                <!-- Added new internship -->
+                <div class="section-card p-6 rounded-lg shadow-lg transform hover:-translate-y-1 transition-transform duration-300">
+                    <h3 class="font-bold text-xl mb-2 text-lapis-blue">Pragati Cohort: Path to Future 6 Internship</h3>
+                    <p class="text-sm text-gray-600">Infosys Springboard</p>
+                    <p class="mt-2 text-gray-700">Participated in a specialized internship program, gaining hands-on experience and skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Treasures of Proficiency</h2>
+            <div class="section-card p-8 rounded-lg">
+                <div class="flex justify-center mb-6 border-b-2 border-pharaoh-gold pb-4">
+                    <button class="tab-button active px-4 py-2 font-semibold rounded-t-lg" data-tab="tech">Technical Skills</button>
+                    <button class="tab-button px-4 py-2 font-semibold rounded-t-lg" data-tab="soft">Soft Skills</button>
+                    <button class="tab-button px-4 py-2 font-semibold rounded-t-lg" data-tab="other">Other Skills</button>
+                </div>
+
+                <div id="tech-content" class="tab-content active">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <h4 class="text-lg font-bold text-lapis-blue mb-2">Languages</h4>
+                            <p>Python</p><p>Java</p><p>C++</p><p>C</p><p>HTML</p><p>CSS</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-lapis-blue mb-2">Frameworks/Libraries</h4>
+                            <p>Angular</p><p>Django</p><p>Hibernate</p><p>JSP</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-lapis-blue mb-2">Databases</h4>
+                            <p>Oracle</p><p>MySQL</p><p>WampServer</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-lapis-blue mb-2">Concepts/Domains</h4>
+                            <p>Problem Solving</p><p>OOP</p><p>Machine Learning</p><p>Data Science</p><p>AI</p><p>Modal Analysis</p><p>Data Cleansing</p><p>Technical Support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="soft-content" class="tab-content">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Leadership</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Communication</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Teamwork</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Problem-Solving</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Adaptability</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Quick Learning</div>
+                    </div>
+                </div>
+
+                <div id="other-content" class="tab-content">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">MS Office</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Excel</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Teaching</div>
+                         <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Computer Science</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Digital Monuments</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1: First Aid Knock -->
+                <div class="section-card rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="project-card-image w-full h-56">
+                        <img class="w-full h-full object-cover" src="https://placehold.co/600x400/EAE0C8/3C3636?text=First+Aid+Knock" alt="First Aid Knock Project">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-2xl mb-2 text-lapis-blue">First Aid Knock (Medicine Recommendation)</h3>
+                        <p class="text-sm text-gray-600">June 2025 - July 2025</p>
+                        <p class="text-gray-700 text-base mt-2">Designed and developed a system for medicine recommendation, providing quick first aid guidance.</p>
+                    </div>
+                </div>
+                <!-- Project 2: Movie Recommendation Systems -->
+                <div class="section-card rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="project-card-image w-full h-56">
+                        <img class="w-full h-full object-cover" src="https://placehold.co/600x400/3C3636/FDF6E3?text=Movie+Recommender" alt="Movie Recommendation System Project">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-2xl mb-2 text-lapis-blue">Movie Recommendation Systems</h3>
+                        <p class="text-sm text-gray-600">May 2025 - June 2025</p>
+                        <p class="text-gray-700 text-base mt-2">Developed a Machine Learning and Data Science model to recommend movies based on user preferences.</p>
+                    </div>
+                </div>
+                <!-- Project 3: Tyre Retreading -->
+                <div class="section-card rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="project-card-image w-full h-56">
+                        <img class="w-full h-full object-cover" src="https://placehold.co/600x400/DAA520/3C3636?text=Tyre+Retreading" alt="Tyre Retreading Project">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-2xl mb-2 text-lapis-blue">Tyre Retreading</h3>
+                        <p class="text-sm text-gray-600">August 2022 - April 2023</p>
+                        <p class="text-gray-700 text-base mt-2">Created a desktop application using Java to manage and optimize the tire retreading process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Seals of Mastery</h2>
+            <div class="section-card p-8 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                    <!-- Added new certifications -->
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">AI</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Cloud</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Infosys Speingboard: Pragati cohort path to future 6 internship</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Microsoft Azure Fundamentals: AZ-900</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Crash Course on Python</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Career Edge - Knockdown the Lockdown</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Introduction to Artificial Intelligence</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">C Programming</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">C++</div>
+                    <div class="p-4 bg-dark-sand rounded-lg shadow-sm">Core Java / Advance Java</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section id="languages" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Tongues of the Pharaohs</h2>
+            <div class="section-card max-w-xl mx-auto p-8 rounded-lg text-center">
+                <p class="text-lg mb-2"><span class="font-bold">English:</span> Both (Read, Write, Speak)</p>
+                <p class="text-lg"><span class="font-bold">Hindi:</span> Both (Read, Write, Speak)</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16">
+            <h2 class="text-4xl font-bold text-center decorative-border-bottom">Send a Papyrus Scroll</h2>
+            <div class="section-card max-w-2xl mx-auto p-8 rounded-lg">
+                 <p class="text-center text-lg mb-6">Have a project or an opportunity? I would be delighted to hear from you.</p>
+                 <div class="text-center space-y-2">
+                     <p class="text-lg"><span class="font-bold">Email:</span> priyajaxyadav@gmail.com</p>
+                     <p class="text-lg"><span class="font-bold">Phone:</span> +91-9179393350</p>
+                     <p class="text-lg"><span class="font-bold">Location:</span> Indore, MP, India</p>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-sand border-t-4 border-pharaoh-gold mt-12 py-6">
+        <div class="container mx-auto text-center text-gray-700">
+            <p>&copy; 2025 Priya Yadav. All rights reserved.</p>
+            <p class="text-sm mt-2">Crafted with code and a touch of ancient inspiration.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Skills Tabs
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const tab = button.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${tab}-content`) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    if(mobileMenu.classList.contains('hidden') === false){
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
